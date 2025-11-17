@@ -10,8 +10,16 @@ public class AppBanco {
         OperacaoSaque operacao = new OperacaoSaque(conta, new BigDecimal(150));
         Thread saqueJoao = new Thread(operacao);
         Thread saqueMaria = new Thread(operacao);
-        System.out.println(Thread.currentThread().getName());
         saqueJoao.start();
         saqueMaria.start();
+        System.out.println(Thread.currentThread().getName());
+        // A thread onde o método join() foi chamado irá aguardar a finalização da thread que chamou o método.
+        try {
+            saqueJoao.join();
+            saqueMaria.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Saldo final: " + conta.getSaldo());
     }
 }

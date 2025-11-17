@@ -19,7 +19,7 @@ public class OperacaoSaque implements Runnable {
         if (saldoAtual.compareTo(valor) >= 0) {
             System.out.println("Debitando valor da conta");
             conta.debitaSaldo(valor);
-            System.out.println("Saldo atual: " +conta.getSaldo());
+            System.out.println("Saldo atual: " + conta.getSaldo());
         }
         System.out.println("Finalizando operação de saque.");
     }
