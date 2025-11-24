@@ -8,10 +8,8 @@ public class AppBanco {
         Cliente cliente = new Cliente("João");
         Conta conta = new Conta(cliente, new BigDecimal(150));
         OperacaoSaque operacao = new OperacaoSaque(conta, new BigDecimal(150));
-        Thread saqueJoao = new Thread(operacao);
-        Thread saqueMaria = new Thread(operacao);
-        saqueJoao.start();
-        saqueMaria.start();
+        Thread saqueJoao = Thread.startVirtualThread(operacao);
+        Thread saqueMaria = Thread.startVirtualThread(operacao);
         System.out.println(Thread.currentThread().getName());
         // A thread onde o método join() foi chamado irá aguardar a finalização da thread que chamou o método.
         try {
